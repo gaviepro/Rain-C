@@ -46,6 +46,7 @@ Pour une **saisie utilisateur** (usage de `scanf`), utilisez un **TTY** avec `-i
 ```bash
 sudo docker run -it --rm -v "$PWD:/data" -w /data rainc -L lab/rainbowTAB.t3c
 ```
+---
 ## Compilation avec makeFile (Debian/Ubuntu)
 
 ```bash
