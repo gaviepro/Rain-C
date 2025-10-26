@@ -16,6 +16,25 @@ Les algorithmes pris en charge sont : `sha256`, `sha512`, `blake2b512` et `sha3-
 
 ---
 
+## Usage (aide et options)
+([...] -> optionnels)
+
+```bash
+./lab/rainc -h
+./lab/rainc -G lab/rockyou_1000.txt [-o lab/rainbowTAB.t3c] [-a <algo>]
+./lab/rainc -L lab/rainbowTAB.t3c  [-s <condensat-hex>]
+```
+
+**Description rapide :**  
+`-G lab/rockyou_1000.txt` : génère une table T3C correspondances `hash -> mdp` à partir d’un dictionnaire  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`-o lab/rainbowTAB.t3c` : fixe le fichier de sortie (par défaut `lab/rainbowTAB.t3c`)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`-a <algo>` : choisit l’algorithme (`sha256 | sha512 | blake2b512 | sha3-256`) (par défaut `sha256`)   
+
+`-L lab/rainbowTAB.t3c` : recherche dans une T3C existante  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`-s <hash>` : renvoie le mot de passe associé au condensat fourni sinon lisez depuis `stdin`
+
+---
+
 ## Docker 
 
 Construisez l’image depuis la **racine du projet** là où se trouve le `Dockerfile` :
@@ -34,18 +53,18 @@ sudo docker run --rm -it -v "$PWD:/data" -w /data rainc -G lab/rockyou_1000.txt 
 sudo docker run --rm -it -v "$PWD:/data" -w /data rainc -L lab/rainbowTAB.t3c -s 496b7706d1f04a4d767c4117589596026110067cf81fda050056a0460b03e109
 ```
 
-**Lookup via `stdin` (pipe/fichier) :**  
+**Lookup via `stdin` :**  
 Quand vous alimentez Rain-C en **flux**, gardez `stdin` **ouvert** avec `-it` :
 
 ```bash
-echo "496b7706d1f04a4d767c4117589596026110067cf81fda050056a0460b03e109" | sudo docker run -i --rm -v "$PWD:/data" -w /data rainc -L lab/rainbowTAB.t3c
-```
-
-**Lookup interactif :**  
-Pour une **saisie utilisateur** (usage de `scanf`), utilisez un **TTY** avec `-it` :
-```bash
 sudo docker run -it --rm -v "$PWD:/data" -w /data rainc -L lab/rainbowTAB.t3c
 ```
+
+```bash
+echo "496b7706d1f04a4d767c4117589596026110067cf81fda050056a0460b03e109" | sudo docker run -i --rm -v "$PWD:/data" -w /data rainc -L lab/rainbowTAB.t3c
+``` 
+
+
 ---
 ## Compilation avec makeFile (Debian/Ubuntu)
 
@@ -60,21 +79,3 @@ Depuis la **racine du dépôt** :
 make
 ./lab/rainc
 ```
-
-### Usage (aide et options)
-([...] -> optionnels)
-
-```bash
-./lab/rainc -h
-./lab/rainc -G lab/rockyou_1000.txt [-o lab/rainbowTAB.t3c] [-a <algo>]
-./lab/rainc -L lab/rainbowTAB.t3c  [-s <condensat-hex>]
-```
-
-**Description rapide :**  
-`-G lab/rockyou_1000.txt` génère une table T3C correspondances `hash -> mdp` à partir d’un dictionnaire 
-`-o lab/rainbowTAB.t3c` fixe le fichier de sortie (par défaut `rainbowTAB.t3c`)
-`-a <algo>` choisit l’algorithme (`sha256 | sha512 | blake2b512 | sha3-256`) (par défaut `sha256`)
-
-`-L lab/rainbowTAB.t3c` recherche dans une T3C existante
-`-s <hash>` renvoie le mot de passe associé au condensat fourni sinon lisez depuis `stdin`
-
