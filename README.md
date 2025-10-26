@@ -35,37 +35,68 @@ Les algorithmes pris en charge sont : `sha256`, `sha512`, `blake2b512` et `sha3-
 
 ---
 
-## Docker 
+## Docker sous Linux
 
 Construisez l’image depuis la **racine du projet** là où se trouve le `Dockerfile` :
 
 ```bash
-sudo docker build -t rainc .
+docker build -t rainc .
 ```
 
 **Génération dans Docker :**
 ```bash
-sudo docker run --rm -it -v "$PWD:/data" -w /data rainc -G lab/rockyou_1000.txt -o lab/rainbowTAB.t3c -a sha256
+docker run --rm -it -v "$PWD:/data" -w /data rainc -G lab/rockyou_1000.txt -o lab/rainbowTAB.t3c -a sha256
 ```
 
-**Lookup d’un hash unique :**
+**Lookup d’un hash unique dans Docker :**
 ```bash
-sudo docker run --rm -it -v "$PWD:/data" -w /data rainc -L lab/rainbowTAB.t3c -s 496b7706d1f04a4d767c4117589596026110067cf81fda050056a0460b03e109
+docker run --rm -it -v "$PWD:/data" -w /data rainc -L lab/rainbowTAB.t3c -s 496b7706d1f04a4d767c4117589596026110067cf81fda050056a0460b03e109
 ```
 
 **Lookup via `stdin` :**  
 Quand vous alimentez Rain-C en **flux**, gardez `stdin` **ouvert** avec `-it` :
 
 ```bash
-sudo docker run -it --rm -v "$PWD:/data" -w /data rainc -L lab/rainbowTAB.t3c
+docker run -it --rm -v "$PWD:/data" -w /data rainc -L lab/rainbowTAB.t3c
 ```
 
 ```bash
-echo "496b7706d1f04a4d767c4117589596026110067cf81fda050056a0460b03e109" | sudo docker run -i --rm -v "$PWD:/data" -w /data rainc -L lab/rainbowTAB.t3c
-``` 
-
+echo "496b7706d1f04a4d767c4117589596026110067cf81fda050056a0460b03e109" | docker run -i --rm -v "$PWD:/data" -w /data rainc -L lab/rainbowTAB.t3c
+```
 
 ---
+
+## Docker sous Windows
+
+Construisez l’image depuis la **racine du projet** là où se trouve le `Dockerfile` :
+
+```bash
+docker build -t rainc .
+```
+
+**Génération dans Docker Powershell :**
+```bash
+docker run --rm -it -v "${PWD}:/data" -w /data rainc -G lab/rockyou_1000.txt -o lab/rainbowTAB.t3c -a sha256
+```
+
+**Lookup d’un hash unique Docker Powershell :**
+```bash
+docker run --rm -it -v "${PWD}:/data" -w /data rainc -L lab/rainbowTAB.t3c -s 496b7706d1f04a4d767c4117589596026110067cf81fda050056a0460b03e109
+```
+
+**Lookup via `stdin` :**  
+Quand vous alimentez Rain-C en **flux**, gardez `stdin` **ouvert** avec `-it` :
+
+```bash
+docker run -it --rm -v "${PWD}:/data" -w /data rainc -L lab/rainbowTAB.t3c
+```
+
+```bash
+echo "496b7706d1f04a4d767c4117589596026110067cf81fda050056a0460b03e109" | docker run -i --rm -v "${PWD}:/data" -w /data rainc -L lab/rainbowTAB.t3c
+```
+
+---
+
 ## Compilation avec makeFile (Debian/Ubuntu)
 
 ```bash
