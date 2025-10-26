@@ -66,15 +66,15 @@ make
 
 ```bash
 ./lab/rainc -h
-./lab/rainc -G <dict.txt> [-o <out.t3c>] [-a <algo>]
-./lab/rainc -L <table.t3c>  [-s <condensat-hex>]
+./lab/rainc -G <lab/rockyou_1000.txt> [-o <lab/rainbowTAB.t3c>] [-a <algo>]
+./lab/rainc -L <lab/rainbowTAB.t3c>  [-s <condensat-hex>]
 ```
 
 **Description rapide :**  
-`-G` génère une table T3C correspondances `hash -> mdp` à partir d’un dictionnaire 
-`-o <out.t3c>` fixe le fichier de sortie (par défaut `rainbowTAB.t3c`)
+`-G <lab/rockyou_1000.txt>` génère une table T3C correspondances `hash -> mdp` à partir d’un dictionnaire 
+`-o <lab/rainbowTAB.t3c>` fixe le fichier de sortie (par défaut `rainbowTAB.t3c`)
 `-a <algo>` choisit l’algorithme (`sha256 | sha512 | blake2b512 | sha3-256`) (par défaut `sha256`)
 
-`-L <table.t3c>` recherche dans une T3C existante
+`-L <lab/rainbowTAB.t3c>` recherche dans une T3C existante
 `-s <hash>` renvoie le mot de passe associé au condensat fourni sinon lisez depuis `stdin`
 
