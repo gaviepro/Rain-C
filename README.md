@@ -46,12 +46,7 @@ Pour une **saisie utilisateur** (usage de `scanf`), utilisez un **TTY** avec `-i
 ```bash
 sudo docker run -it --rm -v "$PWD:/data" -w /data rainc -L lab/rainbowTAB.t3c
 ```
-
-<<<<<<< HEAD
 ## Compilation avec makeFile (Debian/Ubuntu)
-=======
-## Compilation native avec makeFile (Debian/Ubuntu)
->>>>>>> dd976d7 (V.1 du projet Rain-C)
 
 ```bash
 sudo apt update
